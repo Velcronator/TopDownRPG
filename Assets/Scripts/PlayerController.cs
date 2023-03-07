@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     {
         playControls.Enable();
     }
+    private void OnDisable()
+    {
+        playControls.Disable();
+    }
 
     private void Update()
     {
