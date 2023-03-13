@@ -7,6 +7,7 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] private GameObject _slashAnimPrefab;
     [SerializeField] private Transform _slashAnimSpawnPoint;
+    [SerializeField] private Transform _weaponCollider;
 
 
     private PlayerControls _playerControls;
@@ -40,11 +41,17 @@ public class Sword : MonoBehaviour
     private void Attack()
     {   //Fire our sword animation
         _animator.SetTrigger("Attack");
+        _weaponCollider.gameObject.SetActive(true);
         _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
         _slashAnim.transform.position = this.transform.position;
     }
 
-    public void SwingUpFlipAnimation()
+    public void DoneAttackingAnimEvent()
+    {
+        _weaponCollider.gameObject.SetActive(false);
+    }
+
+    public void SwingUpFlipAnimationEvent()
     {
         _slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180f, 0f, 0f);
         if (_playerController.FacingLeft)
@@ -52,7 +59,7 @@ public class Sword : MonoBehaviour
             _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
-    public void SwingDownFlipAnimation()
+    public void SwingDownFlipAnimationEvent()
     {
         _slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0f, 0f);
         if (_playerController.FacingLeft)
@@ -69,8 +76,14 @@ public class Sword : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < playerScreenPoint.x)
-            _activeWeapon.transform.rotation = Quaternion.Euler(0, 180, angle);
+        {
+            _activeWeapon.transform.rotation = Quaternion.Euler(0, -180, angle);
+            _weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
         else
+        {
             _activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+            _weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }
