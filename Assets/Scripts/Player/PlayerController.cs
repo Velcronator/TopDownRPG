@@ -8,27 +8,27 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 4f;
 
-    private PlayerControls playControls;
-    private Vector2 movement;
-    private Rigidbody2D rb;
-    private Animator animator;
+    private PlayerControls _playerControls;
+    private Vector2 _movement;
+    private Rigidbody2D _rb;
+    private Animator _animator;
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        playControls = new PlayerControls();
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        _playerControls = new PlayerControls();
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
-        playControls.Enable();
+        _playerControls.Enable();
     }
     private void OnDisable()
     {
-        playControls.Disable();
+        _playerControls.Disable();
     }
 
     private void Update()
@@ -44,14 +44,14 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime) );
+         _rb.MovePosition(_rb.position + _movement * (moveSpeed * Time.fixedDeltaTime) );
     }
 
     private void PlayerInput()
     {
-        movement = playControls.Movement.Move.ReadValue<Vector2>();
-        animator.SetFloat("moveX", movement.x);
-        animator.SetFloat("moveY", movement.y);
+        _movement = _playerControls.Movement.Move.ReadValue<Vector2>();
+        _animator.SetFloat("moveX", _movement.x);
+        _animator.SetFloat("moveY", _movement.y);
     }
 
     private void AdjustPlayerFacingDirection()

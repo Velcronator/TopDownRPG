@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2aee8fce723e7894d88e8bb42d81d8de
+guid: 8c1429281758a4b4ab3f0b31d3b2e44d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -103,17 +103,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hero_Idle_0
+      name: Slime_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed34e1cf436850945a6a59a76539de63
-      internalID: -1136766859
+      spriteID: a37b24a8ccf4cbd40901378ba829297a
+      internalID: 107085748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hero_Idle_1
+      name: Slime_Sheet_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 0
-        width: 96
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +154,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a968fb39609a55649ab5deefd843db12
-      internalID: 1837725572
+      spriteID: 68cc77563e1b83648a28161651c1f3a0
+      internalID: 1316141944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd30ac0f6d8e7604fb2ec18b98911073
+      internalID: -1995252379
       vertices: []
       indices: 
       edges: []
@@ -159,8 +192,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hero_Idle_0: -1136766859
-      Hero_Idle_1: 1837725572
+      Slime_Sheet_0: 107085748
+      Slime_Sheet_1: 1316141944
+      Slime_Sheet_2: -1995252379
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
