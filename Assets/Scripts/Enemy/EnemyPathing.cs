@@ -9,14 +9,18 @@ public class EnemyPathing : MonoBehaviour
     
     private Rigidbody2D rb;
     private Vector2 moveDirection;
+    private Knockback _knockback;
+
 
     private void Awake()
     {
+        _knockback = GetComponent<Knockback>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
+        if (_knockback._gettingKnockedBack) { return; }
         rb.MovePosition(rb.position + moveDirection * (moveSpeed * Time.fixedDeltaTime));
     }
 

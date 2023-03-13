@@ -12,6 +12,12 @@ public class EnemyHealth : MonoBehaviour
 
 
     private int _currentHealth = 0;
+    private Knockback knockback;
+
+    private void Awake()
+    {
+        knockback = GetComponent<Knockback>();
+    }
 
     private void Start()
     {
@@ -22,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
+        knockback.GetKnockedback(PlayerController.Instance.transform, 15f);
         Hurt();
         DetectDeath();
     }
