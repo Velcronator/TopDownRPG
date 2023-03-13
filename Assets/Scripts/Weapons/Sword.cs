@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    [SerializeField] private GameObject _slashAnimPrefab;
+    [SerializeField] private Transform _slashAnimSpawnPoint;
+
+
     private PlayerControls _playerControls;
     private Animator _animator;
     private PlayerController _playerController;
     private ActiveWeapon _activeWeapon;
+    private GameObject _slashAnim;
 
     private void Awake()
     {
@@ -35,6 +40,25 @@ public class Sword : MonoBehaviour
     private void Attack()
     {   //Fire our sword animation
         _animator.SetTrigger("Attack");
+        _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
+        _slashAnim.transform.position = this.transform.position;
+    }
+
+    public void SwingUpFlipAnimation()
+    {
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180f, 0f, 0f);
+        if (_playerController.FacingLeft)
+        {
+            _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+    public void SwingDownFlipAnimation()
+    {
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0f, 0f);
+        if (_playerController.FacingLeft)
+        {
+            _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void MouseFollowWithOffset()
