@@ -8,15 +8,19 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int _health = 3;
     [SerializeField] private AudioClip _hurtSFX;
     [SerializeField] private AudioClip _dieSFX;
+    [SerializeField] private GameObject _DeathVFX;
+
     private AudioSource _audioSource;
+    private Flash _flash;
 
 
     private int _currentHealth = 0;
-    private Knockback knockback;
+    private Knockback _knockback;
 
     private void Awake()
     {
-        knockback = GetComponent<Knockback>();
+        _flash = GetComponent<Flash>();
+        _knockback = GetComponent<Knockback>();
     }
 
     private void Start()
@@ -28,20 +32,32 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        knockback.GetKnockedback(PlayerController.Instance.transform, 15f);
+        _knockback.GetKnockedback(PlayerController.Instance.transform, 15f);
         Hurt();
-        DetectDeath();
     }
 
     private void Hurt()
     {
         _audioSource.Play();
+        StartCoroutine(CheckForDeathRoutine());
+    }
+
+    private IEnumerator CheckForDeathRoutine()
+    {
+        yield return StartCoroutine(_flash.FlashRoutine());
+        DetectDeath();
+    }
+    private IEnumerator PlayDeath()
+    {
+        yield return StartCoroutine(_flash.FlashRoutine());
+        DetectDeath();
     }
 
     private void DetectDeath()
     {
         if (_currentHealth <= 0)
         {
+            Instantiate(_DeathVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
