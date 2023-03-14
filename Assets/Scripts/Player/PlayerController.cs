@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.ParticleSystem;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _dashTime = 0.2f;
     [SerializeField] TrailRenderer _trailRenderer;
     [SerializeField] float _dashCoolDown = 0.25f;
+    [SerializeField] GameObject _dashParticlePrefab;
+    [SerializeField] Transform _dashParticleSpawnPoint;
 
     PlayerControls _playerControls;
     Vector2 _movement;
@@ -93,6 +99,7 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             _moveSpeed *= _dashSpeed;
             _trailRenderer.emitting = true;
+            Instantiate(_dashParticlePrefab , _dashParticleSpawnPoint.position, Quaternion.identity);
             StartCoroutine(EndDashRoutine());
         }
     }
