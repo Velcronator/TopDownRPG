@@ -8,13 +8,14 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject _slashAnimPrefab;
     [SerializeField] private Transform _slashAnimSpawnPoint;
     [SerializeField] private Transform _weaponCollider;
+    [SerializeField] float _swordAttackCoolDown = 0.5f;
 
-
-    private PlayerControls _playerControls;
-    private Animator _animator;
-    private PlayerController _playerController;
-    private ActiveWeapon _activeWeapon;
-    private GameObject _slashAnim;
+    PlayerControls _playerControls;
+    Animator _animator;
+    PlayerController _playerController;
+    ActiveWeapon _activeWeapon;
+    GameObject _slashAnim;
+    bool _attackButtonDown, _isAttacking = false;
 
     private void Awake()
     {
@@ -30,20 +31,43 @@ public class Sword : MonoBehaviour
     }
     private void Start()
     {
-        _playerControls.Combat.Attack.started += _ => Attack();
+        _playerControls.Combat.Attack.started += _ => StartAttacking();
+        _playerControls.Combat.Attack.canceled += _ => StopAttacking();
     }
 
     private void Update()
     {
         MouseFollowWithOffset();
+        Attack();
     }
 
     private void Attack()
-    {   //Fire our sword animation
-        _animator.SetTrigger("Attack");
-        _weaponCollider.gameObject.SetActive(true);
-        _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
-        _slashAnim.transform.position = this.transform.position;
+    {
+        if (_attackButtonDown && !_isAttacking)
+        {
+            _isAttacking = true;
+            _animator.SetTrigger("Attack");
+            _weaponCollider.gameObject.SetActive(true);
+            _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
+            _slashAnim.transform.position = this.transform.position; StartCoroutine(AttackCDRoutine());
+            StartCoroutine(AttackCDRoutine());
+        }
+    }
+
+    private IEnumerator AttackCDRoutine()
+    {
+        yield return new WaitForSeconds(_swordAttackCoolDown);
+        _isAttacking = false;
+    }
+
+    private void StartAttacking()
+    {
+        _attackButtonDown = true;
+    }
+
+    private void StopAttacking()
+    {
+        _attackButtonDown = false;
     }
 
     public void DoneAttackingAnimEvent()
