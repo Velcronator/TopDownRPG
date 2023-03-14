@@ -9,15 +9,20 @@ public class PlayerController : MonoBehaviour
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     public static PlayerController Instance; //todo replace this
 
-    [SerializeField] float moveSpeed = 4f;
+    [SerializeField] float _moveSpeed = 4f;
+    [SerializeField] float _dashSpeed = 4f;
+    [SerializeField] float _dashTime = 0.2f;
+    [SerializeField] TrailRenderer _trailRenderer;
+    [SerializeField] float _dashCoolDown = 0.25f;
 
-    private PlayerControls _playerControls;
-    private Vector2 _movement;
-    private Rigidbody2D _rb;
-    private Animator _animator;
-    private SpriteRenderer _spriteRenderer;
+    PlayerControls _playerControls;
+    Vector2 _movement;
+    Rigidbody2D _rb;
+    Animator _animator;
+    SpriteRenderer _spriteRenderer;
 
     private bool facingLeft = false;
+    private bool isDashing = false;
 
     private void Awake()
     {
@@ -26,6 +31,11 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        _playerControls.Combat.Dash.performed += _ => Dash();
     }
 
     private void OnEnable()
@@ -50,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-         _rb.MovePosition(_rb.position + _movement * (moveSpeed * Time.fixedDeltaTime) );
+        _rb.MovePosition(_rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
     }
 
     private void PlayerInput()
@@ -74,6 +84,25 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = false;
             FacingLeft = false;
         }
+    }
 
+    private void Dash()
+    {
+        if (!isDashing)
+        {
+            isDashing = true;
+            _moveSpeed *= _dashSpeed;
+            _trailRenderer.emitting = true;
+            StartCoroutine(EndDashRoutine());
+        }
+    }
+
+    private IEnumerator EndDashRoutine()
+    {
+        yield return new WaitForSeconds(_dashTime);
+        _moveSpeed /= _dashSpeed;
+        _trailRenderer.emitting = false;
+        yield return new WaitForSeconds(_dashCoolDown);
+        isDashing = false;
     }
 }
