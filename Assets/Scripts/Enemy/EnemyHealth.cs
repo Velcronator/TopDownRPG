@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private AudioClip _hurtSFX;
     [SerializeField] private AudioClip _dieSFX;
     [SerializeField] private GameObject _DeathVFX;
+    [SerializeField] private float _knockbackThrust = 15f;
 
     private AudioSource _audioSource;
     private Flash _flash;
@@ -32,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        _knockback.GetKnockedback(PlayerController.Instance.transform, 15f);
+        _knockback.GetKnockedback(PlayerController.Instance.transform, _knockbackThrust);
         Hurt();
     }
 

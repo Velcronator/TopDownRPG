@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
         Roaming
     }
 
+    [SerializeField] float _roamingFloatTime = 2f;
+
     private Rigidbody2D _rb;
     private State _state;
     private EnemyPathing _enemyPathfinding;
@@ -30,7 +32,7 @@ public class EnemyAI : MonoBehaviour
         {
             Vector2 roamPosition = GetRoamingPosition();
             _enemyPathfinding.MoveTo(roamPosition);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(_roamingFloatTime);
         }
     }
 

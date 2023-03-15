@@ -20,7 +20,7 @@ public class EnemyPathing : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_knockback._gettingKnockedBack) { return; }
+        if (_knockback.GettingKnockedBack) { return; }
         rb.MovePosition(rb.position + moveDirection * (moveSpeed * Time.fixedDeltaTime));
     }
 

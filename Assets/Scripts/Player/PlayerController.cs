@@ -10,7 +10,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
+    public bool FacingLeft { get { return facingLeft; } }
     public static PlayerController Instance; //todo replace this
 
     [SerializeField] float _moveSpeed = 4f;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private bool facingLeft = false;
     private bool isDashing = false;
+    private float _startingMoveSpeed;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _playerControls.Combat.Dash.performed += _ => Dash();
+        _startingMoveSpeed = _moveSpeed;
     }
 
     private void OnEnable()
@@ -83,12 +85,12 @@ public class PlayerController : MonoBehaviour
         if (mousePos.x < playerScreenPoint.x)
         {
             _spriteRenderer.flipX = true;
-            FacingLeft = true;
+            facingLeft = true;
         }
         else
         {
             _spriteRenderer.flipX = false;
-            FacingLeft = false;
+            facingLeft = false;
         }
     }
 
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator EndDashRoutine()
     {
         yield return new WaitForSeconds(_dashTime);
-        _moveSpeed /= _dashSpeed;
+        _moveSpeed = _startingMoveSpeed;
         _trailRenderer.emitting = false;
         yield return new WaitForSeconds(_dashCoolDown);
         isDashing = false;
