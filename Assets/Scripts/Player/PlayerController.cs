@@ -11,7 +11,6 @@ using static UnityEngine.Rendering.DebugUI.Table;
 public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get { return facingLeft; } }
-    public static PlayerController Instance; //todo replace this
 
     [SerializeField] float _moveSpeed = 4f;
     [SerializeField] float _dashSpeed = 4f;
@@ -35,7 +34,6 @@ public class PlayerController : Singleton<PlayerController>
     {
         base.Awake();
 
-        Instance = this;
         _playerControls = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
