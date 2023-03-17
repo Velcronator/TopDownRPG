@@ -8,7 +8,7 @@ using static UnityEditor.PlayerSettings;
 using static UnityEngine.ParticleSystem;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get { return facingLeft; } }
     public static PlayerController Instance; //todo replace this
@@ -31,8 +31,10 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float _startingMoveSpeed;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Instance = this;
         _playerControls = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
