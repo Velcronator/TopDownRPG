@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
@@ -11,13 +9,15 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         if (instance != null && this.gameObject != null)
         {
+            Debug.Log("this game object is: " + this.gameObject.name);
             Destroy(this.gameObject);
         }
-        else 
+        else
         {
             instance = (T)this;
         }
 
-        DontDestroyOnLoad(gameObject);
+        if (!gameObject.transform.parent)
+            DontDestroyOnLoad(gameObject);
     }
 }

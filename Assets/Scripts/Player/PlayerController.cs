@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.ParticleSystem;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -49,10 +45,6 @@ public class PlayerController : Singleton<PlayerController>
     private void OnEnable()
     {
         _playerControls.Enable();
-    }
-    private void OnDisable()
-    {
-        _playerControls.Disable();
     }
 
     private void Update()
