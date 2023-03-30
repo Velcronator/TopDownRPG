@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5740924657256364830
 ParticleSystem:
@@ -4836,7 +4836,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c6e59fd9c1aae94288eea79871cb592, type: 2}
+  - {fileID: 2100000, guid: dafa85210911eab4c8e576ce07dc7070, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
