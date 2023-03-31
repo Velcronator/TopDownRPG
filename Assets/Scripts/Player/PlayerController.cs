@@ -16,6 +16,8 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] GameObject _dashParticlePrefab;
     [SerializeField] Transform _dashParticleSpawnPoint;
 
+    [SerializeField] private Transform _weaponCollider;
+
     PlayerControls _playerControls;
     Vector2 _movement;
     Rigidbody2D _rb;
@@ -56,6 +58,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         AdjustPlayerFacingDirection();
         Move();
+    }
+
+    public Transform GetWeaponCollider()
+    {
+        return _weaponCollider;
     }
 
     private void Move()

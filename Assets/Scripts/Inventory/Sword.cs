@@ -7,19 +7,21 @@ public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject _slashAnimPrefab;
     [SerializeField] private Transform _slashAnimSpawnPoint;
-    [SerializeField] private Transform _weaponCollider;
     [SerializeField] float _swordAttackCoolDown = 0.5f;
 
-    Animator _animator;
-    PlayerController _playerController;
-    ActiveWeapon _activeWeapon;
-    GameObject _slashAnim;
+    private Animator _animator;
+    private GameObject _slashAnim;
+    private Transform _weaponCollider;
 
     private void Awake()
     {
-        _playerController = GetComponentInParent<PlayerController>();
-        _activeWeapon = GetComponentInParent<ActiveWeapon>();
         _animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        _weaponCollider = PlayerController.Instance.GetWeaponCollider();
+        _slashAnimSpawnPoint = GameObject.Find("Slash Animation Spawn Point").transform;
     }
 
 
@@ -31,7 +33,6 @@ public class Sword : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        //_isAttacking = true;
         _animator.SetTrigger("Attack");
         _weaponCollider.gameObject.SetActive(true);
         _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
@@ -55,7 +56,7 @@ public class Sword : MonoBehaviour, IWeapon
     public void SwingUpFlipAnimationEvent()
     {
         _slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180f, 0f, 0f);
-        if (_playerController.FacingLeft)
+        if (PlayerController.Instance.FacingLeft)
         {
             _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -63,7 +64,7 @@ public class Sword : MonoBehaviour, IWeapon
     public void SwingDownFlipAnimationEvent()
     {
         _slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0f, 0f);
-        if (_playerController.FacingLeft)
+        if (PlayerController.Instance.FacingLeft)
         {
             _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -72,18 +73,18 @@ public class Sword : MonoBehaviour, IWeapon
     private void MouseFollowWithOffset()
     {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(_playerController.transform.position);
+        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            _activeWeapon.transform.rotation = Quaternion.Euler(0, -180, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
             _weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         else
         {
-            _activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
             _weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
