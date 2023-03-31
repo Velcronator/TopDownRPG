@@ -3,72 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject _slashAnimPrefab;
     [SerializeField] private Transform _slashAnimSpawnPoint;
     [SerializeField] private Transform _weaponCollider;
     [SerializeField] float _swordAttackCoolDown = 0.5f;
 
-    PlayerControls _playerControls;
     Animator _animator;
     PlayerController _playerController;
     ActiveWeapon _activeWeapon;
     GameObject _slashAnim;
-    bool _attackButtonDown, _isAttacking = false;
 
     private void Awake()
     {
         _playerController = GetComponentInParent<PlayerController>();
         _activeWeapon = GetComponentInParent<ActiveWeapon>();
-        _playerControls = new PlayerControls();
         _animator = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        _playerControls.Enable();
-    }
-    private void Start()
-    {
-        _playerControls.Combat.Attack.started += _ => StartAttacking();
-        _playerControls.Combat.Attack.canceled += _ => StopAttacking();
-    }
+
 
     private void Update()
     {
         MouseFollowWithOffset();
-        Attack();
     }
 
-    private void Attack()
+    public void Attack()
     {
-        if (_attackButtonDown && !_isAttacking)
-        {
-            _isAttacking = true;
-            _animator.SetTrigger("Attack");
-            _weaponCollider.gameObject.SetActive(true);
-            _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
-            _slashAnim.transform.position = this.transform.position; StartCoroutine(AttackCDRoutine());
-            StartCoroutine(AttackCDRoutine());
-        }
+        //_isAttacking = true;
+        _animator.SetTrigger("Attack");
+        _weaponCollider.gameObject.SetActive(true);
+        _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
+        _slashAnim.transform.position = this.transform.position; StartCoroutine(AttackCDRoutine());
+        StartCoroutine(AttackCDRoutine());
     }
 
     private IEnumerator AttackCDRoutine()
     {
         yield return new WaitForSeconds(_swordAttackCoolDown);
-        _isAttacking = false;
+        ActiveWeapon.Instance.ToggleIsAttacking(false);
     }
 
-    private void StartAttacking()
-    {
-        _attackButtonDown = true;
-    }
 
-    private void StopAttacking()
-    {
-        _attackButtonDown = false;
-    }
 
     public void DoneAttackingAnimEvent()
     {
