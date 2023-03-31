@@ -18,6 +18,10 @@ public class ActiveInventory : MonoBehaviour
     {
         playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
     }
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
 
     private void ToggleActiveSlot(int numValue)
     {
@@ -34,10 +38,12 @@ public class ActiveInventory : MonoBehaviour
         }
         this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
 
+        ChangeActiveWeapon();
     }
 
-    private void OnEnable()
+    private void ChangeActiveWeapon()
     {
-        playerControls.Enable();
+        Debug.Log(transform.GetChild(activeSlotIndexNum).GetComponent<InventorySlot>().GetWeaponInfo().weaponPrefab.name);
     }
+
 }
