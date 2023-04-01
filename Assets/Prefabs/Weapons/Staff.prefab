@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3756274348678919363}
   - component: {fileID: 1556730629258933960}
   - component: {fileID: 3921328401589481974}
+  - component: {fileID: 5762083343415861775}
+  - component: {fileID: 8562359946936322467}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -46,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93431288f9e4f840a283fe4c2153327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponInfo: {fileID: 11400000, guid: 34542bc97215c4543ac27efe0da6587a, type: 2}
 --- !u!212 &3921328401589481974
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,6 +101,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5762083343415861775
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851801063238290765}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b8748e7f89eb074cb393abc59611f14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8562359946936322467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851801063238290765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93431288f9e4f840a283fe4c2153327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponInfo: {fileID: 0}
 --- !u!1 &3871421961360512937
 GameObject:
   m_ObjectHideFlags: 0
