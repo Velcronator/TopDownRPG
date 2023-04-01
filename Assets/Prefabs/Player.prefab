@@ -39,7 +39,7 @@ Transform:
   - {fileID: 5918001371248988474}
   - {fileID: 1635843564270193951}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3266470048571595875
 SpriteRenderer:
@@ -140,6 +140,7 @@ MonoBehaviour:
   _dashParticlePrefab: {fileID: 5117534653501714076, guid: be9d75b837898904fae8b10ecc601d1b, type: 3}
   _dashParticleSpawnPoint: {fileID: 7419151772761602504}
   _weaponCollider: {fileID: 5918001371248988474}
+  _slashAnimSpawnPoint: {fileID: 6555789919010192005}
 --- !u!95 &382869602972934260
 Animator:
   serializedVersion: 5
@@ -218,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8490783836519920124}
   - component: {fileID: 8535959134293575143}
+  - component: {fileID: 6621301440893351267}
   m_Layer: 0
   m_Name: Active Weapon
   m_TagString: Untagged
@@ -251,6 +253,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bee6a839d64f134d94bc7ec56cf3b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6621301440893351267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267190985107372186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e5539a60f4eb4c96a4e806a5653b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2802932380538716561

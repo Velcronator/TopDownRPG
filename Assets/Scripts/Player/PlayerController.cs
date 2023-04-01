@@ -17,6 +17,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] Transform _dashParticleSpawnPoint;
 
     [SerializeField] private Transform _weaponCollider;
+    [SerializeField] private Transform _slashAnimSpawnPoint;
 
     PlayerControls _playerControls;
     Vector2 _movement;
@@ -112,5 +113,10 @@ public class PlayerController : Singleton<PlayerController>
         _trailRenderer.emitting = false;
         yield return new WaitForSeconds(_dashCoolDown);
         isDashing = false;
+    }
+
+    internal Transform GetSlashAnimSpawnPoint()
+    {
+        return _slashAnimSpawnPoint;
     }
 }
