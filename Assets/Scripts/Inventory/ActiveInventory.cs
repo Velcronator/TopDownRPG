@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class ActiveInventory : MonoBehaviour
 {
-    private int activeSlotIndexNum = 0;
+    private int _activeSlotIndexNum = 0;
 
-    private PlayerControls playerControls;
+    private PlayerControls _playerControls;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        _playerControls = new PlayerControls();
     }
 
     private void Start()
     {
-        playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+        _playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
 
         ToggleActiveHighLight(0);
     }
     private void OnEnable()
     {
-        playerControls.Enable();
+        _playerControls.Enable();
     }
 
     private void ToggleActiveSlot(int numValue)
@@ -32,7 +32,7 @@ public class ActiveInventory : MonoBehaviour
 
     private void ToggleActiveHighLight(int indexNum)
     {
-        activeSlotIndexNum = indexNum;
+        _activeSlotIndexNum = indexNum;
 
         foreach(Transform inventorySlot in this.transform)
         {
@@ -50,15 +50,19 @@ public class ActiveInventory : MonoBehaviour
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
-        if (!transform.GetChild(activeSlotIndexNum).GetComponentInChildren<InventorySlot>())
+        if (!transform.GetChild(_activeSlotIndexNum).GetComponentInChildren<InventorySlot>())
         {
             ActiveWeapon.Instance.WeaponNull();
             return;
         }
 
-        GameObject weaponToSpawn = transform.GetChild(activeSlotIndexNum).GetComponentInChildren<InventorySlot>().GetWeaponInfo().weaponPrefab;
+        //Null question
+        GameObject weaponToSpawn = transform?.GetChild(_activeSlotIndexNum)?.GetComponentInChildren<InventorySlot>()?.GetWeaponInfo()?.weaponPrefab;
+        //Exit Change Active Weapon if no prefab was found. Stays on the previous Weapon
+        if(weaponToSpawn == null) { return; }
 
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
+
         ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         newWeapon.transform.parent = ActiveWeapon.Instance.transform;
