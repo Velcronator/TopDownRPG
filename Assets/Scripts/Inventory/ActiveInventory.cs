@@ -50,16 +50,18 @@ public class ActiveInventory : MonoBehaviour
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
-        if (!transform.GetChild(_activeSlotIndexNum).GetComponentInChildren<InventorySlot>())
+        //GameObject weaponToSpawn = transform.GetChild(_activeSlotIndexNum).GetComponentInChildren<InventorySlot>().GetWeaponInfo().weaponPrefab;
+        Transform childTransform = transform.GetChild(_activeSlotIndexNum);
+        InventorySlot inventorySlot = childTransform.GetComponentInChildren<InventorySlot>();
+        WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
+        GameObject weaponToSpawn = weaponInfo?.weaponPrefab;
+
+        if (weaponInfo == null )
         {
             ActiveWeapon.Instance.WeaponNull();
             return;
         }
 
-        //Null question
-        GameObject weaponToSpawn = transform?.GetChild(_activeSlotIndexNum)?.GetComponentInChildren<InventorySlot>()?.GetWeaponInfo()?.weaponPrefab;
-        //Exit Change Active Weapon if no prefab was found. Stays on the previous Weapon
-        if(weaponToSpawn == null) { return; }
 
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
 

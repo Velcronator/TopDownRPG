@@ -73,7 +73,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     public void Attack()
     {
-        if(_attackButtonDown && !_isAttacking)
+        if(_attackButtonDown && !_isAttacking && CurrentActiveWeapon)
         {
             AttackCooldown();
             (CurrentActiveWeapon as IWeapon).Attack();
