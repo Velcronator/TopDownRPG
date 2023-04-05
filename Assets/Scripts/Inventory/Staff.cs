@@ -24,7 +24,6 @@ public class Staff : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        Debug.Log("Staff Attack");
         if (_animator != null)
         {
             _animator.SetTrigger(ATTACK_HASH);
@@ -34,6 +33,7 @@ public class Staff : MonoBehaviour, IWeapon
     public void SpawnStaffProjectileAnimEvent()
     {
         GameObject newMagicLaser = Instantiate(_magicLaser, _magicLaserSpawnPoint.position, Quaternion.identity);
+        newMagicLaser.GetComponent<MagicLaser>().UpdateLaserRange(_weaponInfo.weaponRange);
     }
 
     public WeaponInfo GetWeaponInfo()
