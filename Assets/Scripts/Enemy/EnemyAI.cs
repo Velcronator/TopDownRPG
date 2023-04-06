@@ -13,11 +13,11 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D _rb;
     private State _state;
-    private EnemyPathing _enemyPathfinding;
+    private EnemyPathFinding _enemyPathfinding;
 
     private void Awake()
     {
-        _enemyPathfinding = GetComponent<EnemyPathing>();
+        _enemyPathfinding = GetComponent<EnemyPathFinding>();
         _state = State.Roaming;
     }
 
