@@ -11,10 +11,13 @@ GameObject:
   - component: {fileID: 7838036064554372622}
   - component: {fileID: 3266470048571595875}
   - component: {fileID: 4988819779177081013}
-  - component: {fileID: 657203900098126616}
   - component: {fileID: 382869602972934260}
   - component: {fileID: 3563045607198480933}
   - component: {fileID: 4589004213791348751}
+  - component: {fileID: 657203900098126616}
+  - component: {fileID: 8244569482566562477}
+  - component: {fileID: 7489953260478171676}
+  - component: {fileID: 2822337113477697296}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -120,27 +123,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &657203900098126616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101839974402863405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4672542ca357b224987d32331a945498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 4
-  _dashSpeed: 4
-  _dashTime: 0.2
-  _trailRenderer: {fileID: 3924136426279296275}
-  _dashCoolDown: 0.25
-  _dashParticlePrefab: {fileID: 5117534653501714076, guid: be9d75b837898904fae8b10ecc601d1b, type: 3}
-  _dashParticleSpawnPoint: {fileID: 7419151772761602504}
-  _weaponCollider: {fileID: 5918001371248988474}
-  _slashAnimSpawnPoint: {fileID: 6555789919010192005}
 --- !u!95 &382869602972934260
 Animator:
   serializedVersion: 5
@@ -209,6 +191,69 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &657203900098126616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101839974402863405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4672542ca357b224987d32331a945498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 4
+  _dashSpeed: 4
+  _dashTime: 0.2
+  _trailRenderer: {fileID: 3924136426279296275}
+  _dashCoolDown: 0.25
+  _dashParticlePrefab: {fileID: 5117534653501714076, guid: be9d75b837898904fae8b10ecc601d1b, type: 3}
+  _dashParticleSpawnPoint: {fileID: 7419151772761602504}
+  _weaponCollider: {fileID: 5918001371248988474}
+  _slashAnimSpawnPoint: {fileID: 6555789919010192005}
+--- !u!114 &8244569482566562477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101839974402863405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f12727bcb8c89409e63f9eaf2ba42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _knockbackThrust: 5
+  _damageRecoveryTime: 3
+--- !u!114 &7489953260478171676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101839974402863405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613a7db3365ae1c4c9104c9145a16c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2822337113477697296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101839974402863405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e87d1bf9721f9459d43e5a4afb2614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _whiteFlashMaterial: {fileID: 2100000, guid: 3e89b3335f24897449ae9d508dfc0500, type: 2}
+  _secondFlashMaterial: {fileID: 2100000, guid: 00542adc56503f74bb71a7c3bd32f0bf, type: 2}
+  _restoreDefaultMaterialTime: 0.05
 --- !u!1 &1267190985107372186
 GameObject:
   m_ObjectHideFlags: 0
@@ -5512,4 +5557,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9330e6bb3a9c94585dfbb852c692d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 1

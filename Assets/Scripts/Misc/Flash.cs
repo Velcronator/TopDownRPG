@@ -6,7 +6,7 @@ using UnityEngine;
 public class Flash : MonoBehaviour
 {
     [SerializeField] private Material _whiteFlashMaterial;
-    [SerializeField] private Material _redFlashMaterial;
+    [SerializeField] private Material _secondFlashMaterial;
     [SerializeField] private float _restoreDefaultMaterialTime = 0.05f;
 
     private Material _defaultMaterial;
@@ -26,7 +26,7 @@ public class Flash : MonoBehaviour
         {
             _spriteRenderer.material = _whiteFlashMaterial;
             yield return new WaitForSeconds(_restoreDefaultMaterialTime);
-            _spriteRenderer.material = _redFlashMaterial;
+            _spriteRenderer.material = _secondFlashMaterial;
             yield return new WaitForSeconds(_restoreDefaultMaterialTime);
             _spriteRenderer.material = _defaultMaterial;
             yield return new WaitForSeconds(_restoreDefaultMaterialTime);

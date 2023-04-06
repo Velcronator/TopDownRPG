@@ -15,7 +15,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] float _dashCoolDown = 0.25f;
     [SerializeField] GameObject _dashParticlePrefab;
     [SerializeField] Transform _dashParticleSpawnPoint;
-
     [SerializeField] private Transform _weaponCollider;
     [SerializeField] private Transform _slashAnimSpawnPoint;
 
@@ -24,6 +23,7 @@ public class PlayerController : Singleton<PlayerController>
     Rigidbody2D _rb;
     Animator _animator;
     SpriteRenderer _spriteRenderer;
+    Knockback _knockback;
 
     private bool facingLeft = false;
     private bool isDashing = false;
@@ -37,6 +37,7 @@ public class PlayerController : Singleton<PlayerController>
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _knockback = GetComponent<Knockback>();
     }
 
     private void Start()
@@ -68,6 +69,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Move()
     {
+        if (_knockback.GettingKnockedBack) { return; }
         _rb.MovePosition(_rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
     }
 
