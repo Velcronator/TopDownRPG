@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int _maxHealth = 3;
     [SerializeField] private float _knockbackThrust = 10f;
     [SerializeField] private float _damageRecoveryTime = 1f;
-    
+
     private int _currentHealth;
     private bool _canTakeDamage = true;
 
@@ -27,16 +27,18 @@ public class PlayerHealth : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
-        if (enemy && _canTakeDamage)
+        if (enemy)
         {
-            TakeDamage(1);
-            _knockback.GetKnockedback(collision.gameObject.transform, _knockbackThrust);
-            StartCoroutine(_flash.FlashRoutine());
+            TakeDamage(1, collision.transform);
         }
     }
 
-    private void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Transform hitTransform)
     {
+        if (!_canTakeDamage) { return; }
+
+        _knockback.GetKnockedback(hitTransform, _knockbackThrust);
+        StartCoroutine(_flash.FlashRoutine());
         _canTakeDamage = false;
         _currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
