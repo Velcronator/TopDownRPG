@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 6582544300677316885}
   - component: {fileID: 7959312264714834353}
   - component: {fileID: 3476655522144170738}
+  - component: {fileID: 5174949468113004183}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -42,7 +43,7 @@ Transform:
   m_Children:
   - {fileID: 1340538891302044236}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &793466870636165451
 SpriteRenderer:
@@ -170,7 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6363c03e2b1d2cc48baf686b67b8cc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roamingFloatTime: 2
+  _roamChangeDirFloat: 2
+  _attackRange: 5
+  _enemyType: {fileID: 5174949468113004183}
+  _attackCooldown: 2
 --- !u!114 &3748883701390438308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whiteFlashMaterial: {fileID: 2100000, guid: 3e89b3335f24897449ae9d508dfc0500, type: 2}
-  _secondFlashMaterial: {fileID: 0}
+  _secondFlashMaterial: {fileID: 2100000, guid: 27db3078fc498a44e9760bfb952e06df, type: 2}
   _restoreDefaultMaterialTime: 0.03
 --- !u!114 &6582544300677316885
 MonoBehaviour:
@@ -369,6 +373,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5174949468113004183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804269142705273810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ab108a835cb774e9969ab0d2caa471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 806720999097637757, guid: f85d121ca87de17448309441abc2dbc2, type: 3}
 --- !u!1 &4457275767913089231
 GameObject:
   m_ObjectHideFlags: 0

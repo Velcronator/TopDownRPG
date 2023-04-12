@@ -44,4 +44,9 @@ public class EnemyPathFinding : MonoBehaviour
         _moveDirection = targetPosition;
         FlipSprite();
     }
+
+    public void StopMoving()
+    {
+        _moveDirection = Vector3.zero;
+    }
 }

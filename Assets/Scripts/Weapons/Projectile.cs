@@ -23,9 +23,9 @@ public class Projectile : MonoBehaviour
         DetectFireDistance();
     }
 
-    public void UpdateProjectileRange(float _projectileRange)
+    public void UpdateProjectileRange(float projectileRange)
     {
-        this._projectileRange = _projectileRange;
+        this._projectileRange = projectileRange;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,15 +34,20 @@ public class Projectile : MonoBehaviour
         Indestructible indestructible = collision.gameObject.GetComponent<Indestructible>();
         PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
 
-        if(!collision.isTrigger && (enemyHealth || indestructible || player))
+        if (!collision.isTrigger && (enemyHealth || indestructible || player))
         {
-            if(player && _isEnemyProjectile)
+            if ((player && _isEnemyProjectile) || (enemyHealth && !_isEnemyProjectile))
             {
-                player.TakeDamage(1, transform);
+                player?.TakeDamage(1, transform);
+                Instantiate(_particleOnHitPrefabVFX, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            else if (!collision.isTrigger && indestructible)
+            {
+                Instantiate(_particleOnHitPrefabVFX, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
 
-            Instantiate(_particleOnHitPrefabVFX, transform.position, Quaternion.identity);
-            Destroy(gameObject);
         }
     }
 
