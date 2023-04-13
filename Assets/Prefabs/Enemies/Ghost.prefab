@@ -175,6 +175,7 @@ MonoBehaviour:
   _attackRange: 5
   _enemyType: {fileID: 5174949468113004183}
   _attackCooldown: 2
+  _stopAttackingWhileAttacking: 1
 --- !u!114 &3748883701390438308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +386,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab108a835cb774e9969ab0d2caa471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 806720999097637757, guid: f85d121ca87de17448309441abc2dbc2, type: 3}
+  _bulletPrefab: {fileID: 806720999097637757, guid: f85d121ca87de17448309441abc2dbc2, type: 3}
+  _bulletMoveSpeed: 5
+  _burstCount: 3
+  _projectilesPerBurst: 8
+  _angleSpread: 97
+  _startingDistance: 0.3
+  _timeBetweenBursts: 1
+  _restTime: 0.5
+  _stagger: 1
+  _oscillate: 1
 --- !u!1 &4457275767913089231
 GameObject:
   m_ObjectHideFlags: 0
