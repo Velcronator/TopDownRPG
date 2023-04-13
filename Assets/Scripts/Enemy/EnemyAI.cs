@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     [SerializeField] float _roamChangeDirFloat = 2f;
-    [SerializeField] float _attackRange = 5f;
+    [SerializeField] float _attackRange = 0f;
     [SerializeField] private MonoBehaviour _enemyType;
     [SerializeField] private float _attackCooldown = 2f;
     [SerializeField] private bool _stopAttackingWhileAttacking = false;
