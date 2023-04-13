@@ -60500,11 +60500,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
       propertyPath: _restTime
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
       propertyPath: _burstCount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
+      propertyPath: _angleSpread
+      value: 359
       objectReference: {fileID: 0}
     - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
       propertyPath: _bulletPrefab
@@ -60515,8 +60519,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
+      propertyPath: _startingDistance
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
       propertyPath: _timeBetweenBursts
-      value: 0.3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174949468113004183, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
+      propertyPath: _projectilesPerBurst
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8028262709353446609, guid: 97f913ce315c87f47af170c231da77f4, type: 3}
       propertyPath: m_RootOrder
