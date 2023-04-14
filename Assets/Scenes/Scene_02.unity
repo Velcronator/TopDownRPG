@@ -63673,23 +63673,7 @@ PrefabInstance:
       objectReference: {fileID: 939244699}
     - target: {fileID: 2561781059118696443, guid: 50de126f101c40d4baf90f11930f0516, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505657572044444921, guid: 50de126f101c40d4baf90f11930f0516, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.5555556
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505657572044444921, guid: 50de126f101c40d4baf90f11930f0516, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093291923081307225, guid: 50de126f101c40d4baf90f11930f0516, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.2189436
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093291923081307225, guid: 50de126f101c40d4baf90f11930f0516, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.6510327
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
