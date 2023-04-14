@@ -6,6 +6,14 @@ using Random = UnityEngine.Random;
 
 public class Pickup : MonoBehaviour
 {
+    private enum PickupType
+    {
+        GoldCoin,
+        StaminaGlobe,
+        HealthGlobe
+    }
+
+    [SerializeField] private PickupType _pickupType;
     [SerializeField] private float _pickupDistance = 5f;
     [SerializeField] private float _accelerationRate = 0.5f;
     [SerializeField] private float _moveToPlayerSpeed = 3f;
@@ -52,6 +60,7 @@ public class Pickup : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            DetectPickupType();
             Destroy(gameObject);
         }
     }
@@ -76,6 +85,26 @@ public class Pickup : MonoBehaviour
             transform.position = Vector2.Lerp(startPoint, endPoint, linearT) + new Vector2(0f, height);
 
             yield return null;
+        }
+    }
+
+    private void DetectPickupType()
+    {
+        switch(_pickupType)
+        {
+            case PickupType.GoldCoin:
+                // do stuff
+                Debug.Log("GoldCoin");
+                break;
+            case PickupType.StaminaGlobe:
+                // do stuff
+                Debug.Log("Stamina");
+                break;
+            case PickupType.HealthGlobe:
+                PlayerHealth.Instance.HealPlayer();
+                Debug.Log("Health");
+                break;
+
         }
     }
 }
