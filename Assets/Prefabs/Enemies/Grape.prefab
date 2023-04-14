@@ -288,7 +288,7 @@ MonoBehaviour:
   _health: 3
   _hurtSFX: {fileID: 8300000, guid: 7ca811d3a93e22f4a9328cbf27faa0e2, type: 3}
   _dieSFX: {fileID: 8300000, guid: d2ddca3006f3db74a82ab0983df8abaf, type: 3}
-  _DeathVFX: {fileID: 6045876825785244246, guid: 208d18bc4d1c15c41a379f1475cc81f2, type: 3}
+  _DeathVFX: {fileID: 6045876825785244246, guid: 4727b5fc8252a1b41b73f11f4d30fc80, type: 3}
   _knockbackThrust: 2
 --- !u!95 &1137400803564028587
 Animator:
