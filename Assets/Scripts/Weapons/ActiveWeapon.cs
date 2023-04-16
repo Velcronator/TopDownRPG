@@ -8,8 +8,8 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     
     PlayerControls _playerControls;
     private float _timeBetweenAttacks;
-
     bool _attackButtonDown, _isAttacking = false;
+
 
 
     protected override void Awake()
@@ -22,6 +22,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     {
         _playerControls.Enable();
     }
+
     private void Start()
     {
         _playerControls.Combat.Attack.started += _ => StartAttacking();

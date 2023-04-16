@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
+    public bool _isDead {  get; private set; }
+
     [SerializeField] private int _maxHealth = 3;
     [SerializeField] private float _knockbackThrust = 10f;
     [SerializeField] private float _damageRecoveryTime = 1f;
+    [SerializeField] private float _timeToLoadSceneAfterDeath = 2f;
 
     private Slider _healthSlider;
     private int _currentHealth;
@@ -16,6 +20,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private Knockback _knockback;
     private Flash _flash;
     const string HEALTH_SLIDER_TEXT = "Health Slider";
+    const string TOWN_TEXT = "Town";
+    readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     protected override void Awake()
     {
@@ -25,6 +31,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     }
     private void Start()
     {
+        _isDead = false;
         _currentHealth = _maxHealth;
         UpdateHealthSlider();
     }
@@ -63,11 +70,21 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void CheckPlayerDeath()
     {
-        if (_currentHealth <= 0)
+        if (_currentHealth <= 0 && !_isDead)
         {
+            _isDead = true;
+            Destroy(ActiveWeapon.Instance.gameObject);
             _currentHealth = 0;
-            Debug.Log("Player Death");
+            GetComponent<Animator>().SetTrigger(DEATH_HASH);
+            StartCoroutine(DeathLoadSceneRoutine());
         }
+    }
+
+    private IEnumerator DeathLoadSceneRoutine()
+    {
+        yield return new WaitForSeconds(_timeToLoadSceneAfterDeath);
+        Destroy(gameObject);
+        SceneManager.LoadScene(TOWN_TEXT);
     }
 
     private IEnumerator DamageRecoveryRoutine()
