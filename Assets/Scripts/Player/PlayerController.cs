@@ -75,7 +75,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Move()
     {
-        if (_knockback.GettingKnockedBack || PlayerHealth.Instance._isDead) { return; }
+        if (_knockback.GettingKnockedBack || PlayerHealth.Instance.IsDead) { return; }
         _rb.MovePosition(_rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
     }
 

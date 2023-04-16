@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Purchasing;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "New Weapon")]
