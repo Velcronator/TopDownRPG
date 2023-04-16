@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8244569482566562477}
   - component: {fileID: 7489953260478171676}
   - component: {fileID: 2822337113477697296}
+  - component: {fileID: 5145279723227425689}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -42,7 +43,7 @@ Transform:
   - {fileID: 5918001371248988474}
   - {fileID: 1635843564270193951}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3266470048571595875
 SpriteRenderer:
@@ -254,6 +255,20 @@ MonoBehaviour:
   _whiteFlashMaterial: {fileID: 2100000, guid: 3e89b3335f24897449ae9d508dfc0500, type: 2}
   _secondFlashMaterial: {fileID: 2100000, guid: 00542adc56503f74bb71a7c3bd32f0bf, type: 2}
   _restoreDefaultMaterialTime: 0.05
+--- !u!114 &5145279723227425689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101839974402863405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2eadf423f0f8534284c37414288c635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fullStaminaImage: {fileID: 21300000, guid: 5aa868dfdf63e7d4eb95f9eb412247b2, type: 3}
+  _emptyStaminaImage: {fileID: 21300000, guid: d116a0cc14e20f44195c0f3cfbcbe0cc, type: 3}
 --- !u!1 &1267190985107372186
 GameObject:
   m_ObjectHideFlags: 0
